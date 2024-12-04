@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,15 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let max = a;
+  if (b > max) {
+    max = b;
+  }
+  if (c > max) {
+    max = c;
+  }
+  return max;
 }
 
 /**
@@ -82,8 +89,11 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a + b <= c || a + c <= b || b + c <= a) {
+    return false;
+  }
+  return a === b || a === c || c === b;
 }
 
 /**
@@ -102,6 +112,8 @@ function isIsoscelesTriangle(/* a, b, c */) {
  */
 function convertToRomanNumerals(/* num */) {
   throw new Error('Not implemented');
+  /* const romanNumerals = { XL: 40, X: 10, IX: 9, V: 5, IV: 3, I: 1 };
+  const keys = Object.keys(romanNumerals); */
 }
 
 /**
@@ -119,8 +131,57 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+  let index = 0;
+
+  while (index < numberStr.length) {
+    const char = numberStr[index];
+    switch (char) {
+      case '-':
+        result += `${result ? ' ' : ''}minus`;
+        break;
+      case '.':
+      case ',':
+        result += `${result ? ' ' : ''}point`;
+        break;
+      case '0':
+        result += `${result ? ' ' : ''}zero`;
+        break;
+      case '1':
+        result += `${result ? ' ' : ''}one`;
+        break;
+      case '2':
+        result += `${result ? ' ' : ''}two`;
+        break;
+      case '3':
+        result += `${result ? ' ' : ''}three`;
+        break;
+      case '4':
+        result += `${result ? ' ' : ''}four`;
+        break;
+      case '5':
+        result += `${result ? ' ' : ''}five`;
+        break;
+      case '6':
+        result += `${result ? ' ' : ''}six`;
+        break;
+      case '7':
+        result += `${result ? ' ' : ''}seven`;
+        break;
+      case '8':
+        result += `${result ? ' ' : ''}eight`;
+        break;
+      case '9':
+        result += `${result ? ' ' : ''}nine`;
+        break;
+      default:
+        throw new Error(`Unexpected character: ${char}`);
+    }
+    index += 1;
+  }
+
+  return result;
 }
 
 /**
@@ -135,8 +196,18 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let left = 0;
+  let right = str.length - 1;
+
+  while (left < right) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left += 1;
+    right -= 1;
+  }
+  return true;
 }
 
 /**
