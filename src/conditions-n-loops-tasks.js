@@ -58,7 +58,7 @@ function getMaxNumber(a, b, c) {
  *  y: number
  * }} Position
  * @param {Object} queen - The position of the queen.
- * @param {Object} king - The position of the king.
+ * @param {Object}  king - The position of the king.
  * @return {boolean} True if the queen can capture the king, false otherwise.
  *
  * @example
@@ -110,10 +110,26 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
-  /* const romanNumerals = { XL: 40, X: 10, IX: 9, V: 5, IV: 3, I: 1 };
-  const keys = Object.keys(romanNumerals); */
+function convertToRomanNumerals(num) {
+  let number = num;
+  const roman = [
+    { symbol: 'X', value: 10 },
+    { symbol: 'IX', value: 9 },
+    { symbol: 'V', value: 5 },
+    { symbol: 'IV', value: 4 },
+    { symbol: 'I', value: 1 },
+  ];
+
+  let converted = '';
+
+  for (let i = 0; i < roman.length; i += 1) {
+    while (number >= roman[i].value) {
+      converted += roman[i].symbol;
+      number -= roman[i].value;
+    }
+  }
+
+  return converted;
 }
 
 /**
@@ -224,8 +240,13 @@ function isPalindrome(str) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
@@ -243,8 +264,21 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  if (digit > 9 || digit < 0) {
+    throw new Error('Nums is wrong :(');
+  }
+
+  let tempNum = num;
+
+  while (tempNum > 0) {
+    const currDigit = tempNum % 10;
+    if (currDigit === digit) {
+      return true;
+    }
+    tempNum = Math.floor(tempNum / 10);
+  }
+  return false;
 }
 
 /**
@@ -260,8 +294,24 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  for (let i = 0; i < arr.length; i += 1) {
+    let leftSum = 0;
+    let rightSum = 0;
+
+    for (let j = 0; j < i; j += 1) {
+      leftSum += arr[j];
+    }
+
+    for (let k = i + 1; k < arr.length; k += 1) {
+      rightSum += arr[k];
+    }
+
+    if (leftSum === rightSum) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 /**
